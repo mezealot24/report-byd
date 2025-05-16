@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายงานการใช้งาน Vercel และแผนการพัฒนา</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Prompt', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8 max-w-5xl">
+        <!-- Header -->
+        <header class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-lg shadow-lg p-6 text-white">
+                <h1 class="text-3xl font-bold mb-2">รายงานการใช้งาน Vercel และแผนการพัฒนา</h1>
+                <div class="flex flex-wrap items-center gap-4 mt-4">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>16 พฤษภาคม 2025</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Usage Report</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Image Slideshow -->
+        <section class="mb-10" x-data="{ activeSlide: 0 }">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="relative">
+                    <!-- Navigation Buttons -->
+                    <button @click="activeSlide = (activeSlide === 0) ? 6 : activeSlide - 1"
+                        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-r-lg z-10">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button @click="activeSlide = (activeSlide === 6) ? 0 : activeSlide + 1"
+                        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-l-lg z-10">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Slides -->
+                    <div class="relative h-[400px] overflow-hidden rounded-lg">
+                        <!-- Analytics Slide -->
+                        <div x-show="activeSlide === 0" class="absolute inset-0 transition-opacity duration-500"
+                            x-transition>
+                            <img src="images/analytics.jpg" class="w-full h-full object-contain"
+                                alt="Analytics Overview">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-4">
+                                <h3 class="text-xl font-bold mb-2">Analytics Overview</h3>
+                                <p>การเติบโตของผู้ใช้งานเว็บไซต์ +764% ในช่วง 7 วัน
+                                    แสดงถึงความจำเป็นในการขยายขีดจำกัดการใช้งาน</p>
+                            </div>
+                        </div>
+
+                        <!-- Deployment Slide -->
+                        <div x-show="activeSlide === 1" class="absolute inset-0 transition-opacity duration-500"
+                            x-transition>
+                            <img src="images/deployment.jpg" class="w-full h-full object-contain"
+                                alt="Deployment Status">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-4">
+                                <h3 class="text-xl font-bold mb-2">Deployment Status</h3>
+                                <p>พบปัญหาการ Deploy เนื่องจากการใช้งานเกินขีดจำกัด ส่งผลให้ไม่สามารถอัพเดตเว็บไซต์ได้
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Firewall Slide -->
+                        <div x-show="activeSlide === 2" class="absolute inset-0 transition-opacity duration-500"
+                            x-transition>
+                            <img src="images/firewall.jpg" class="w-full h-full object-contain"
+                                alt="Firewall Statistics">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-4">
+                                <h3 class="text-xl font-bold mb-2">Firewall Statistics</h3>
+                                <p>ระบบรักษาความปลอดภัยกำลังทำงานได้ดี
+                                    แต่ต้องการการปรับแต่งเพิ่มเติมเพื่อรองรับการเติบโต</p>
+                            </div>
+                        </div>
+
+                        <!-- Project Overview Slide -->
+                        <div x-show="activeSlide === 3" class="absolute inset-0 transition-opacity duration-500"
+                            x-transition>
+                            <img src="images/project-overview.jpg" class="w-full h-full object-contain"
+                                alt="Project Overview">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-4">
+                                <h3 class="text-xl font-bold mb-2">Project Overview</h3>
+                                <p>โปรเจกต์กำลังเติบโตอย่างรวดเร็ว มีการพัฒนาฟีเจอร์ใหม่ๆ อย่างต่อเนื่อง</p>
+                            </div>
+                        </div>
+
+                        <!-- Speed Insight Desktop Slide -->
+                        <div x-show="activeSlide === 4" class="absolute inset-0 transition-opacity duration-500"
+                            x-transition>
+                            <img src="images/speed-insight-desktop.jpg" class="w-full h-full object-contain"
+                                alt="Desktop Performance">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-4">
+                                <h3 class="text-xl font-bold mb-2">Desktop Performance</h3>
+                                <p>ประสิทธิภาพบน Desktop อยู่ในเกณฑ์ดีมาก (99/100) แต่ต้องการการปรับแต่งเพิ่มเติม</p>
+                            </div>
+                        </div>
+
+                        <!-- Speed Insight Mobile Slide -->
+                        <div x-show="activeSlide === 5" class="absolute inset-0 transition-opacity duration-500"
+                            x-transition>
+                            <img src="images/speed-insight-mobile.jpg" class="w-full h-full object-contain"
+                                alt="Mobile Performance">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-4">
+                                <h3 class="text-xl font-bold mb-2">Mobile Performance</h3>
+                                <p>ประสิทธิภาพบน Mobile อยู่ในเกณฑ์ดี (96/100) แต่มีโอกาสในการปรับปรุงให้ดียิ่งขึ้น</p>
+                            </div>
+                        </div>
+
+                        <!-- Usage Slide -->
+                        <div x-show="activeSlide === 6" class="absolute inset-0 transition-opacity duration-500"
+                            x-transition>
+                            <img src="images/Usage.jpg" class="w-full h-full object-contain" alt="Resource Usage">
+                            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-4">
+                                <h3 class="text-xl font-bold mb-2">Resource Usage</h3>
+                                <p>การใช้งานทรัพยากรเกินขีดจำกัดของ Free Plan แสดงถึงความจำเป็นในการ Upgrade</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide Indicators -->
+                    <div class="flex justify-center mt-4 space-x-2">
+                        <template x-for="i in 7">
+                            <button @click="activeSlide = i - 1"
+                                :class="{'bg-purple-600': activeSlide === i - 1, 'bg-gray-300': activeSlide !== i - 1}"
+                                class="w-3 h-3 rounded-full transition-colors duration-200"></button>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Left Column -->
+            <div class="lg:col-span-2">
+                <!-- Current Issues Section -->
+                <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h2 class="text-2xl font-semibold mb-6 text-purple-800 border-b pb-2">ปัญหาที่พบในปัจจุบัน</h2>
+                    <div class="space-y-6">
+                        <!-- Usage Limit Issue -->
+                        <div class="bg-red-50 rounded-lg p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-red-100 text-red-800 rounded-full p-2 mr-3">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <h3 class="font-semibold text-red-800">การใช้งานเกินขีดจำกัด</h3>
+                            </div>
+                            <ul class="list-disc pl-5 text-gray-700">
+                                <li>Fast Data Transfer: 201.74 GB / 100 GB (เกิน 101%)</li>
+                                <li>Fast Origin Transfer: 64.21 GB / 10 GB (เกิน 542%)</li>
+                                <li>Function Invocations: 4.6M / 100K (เกิน 4500%)</li>
+                                <li>Edge Requests: 5.2M / 1M (เกิน 420%)</li>
+                            </ul>
+                        </div>
+
+                        <!-- Analytics Issue -->
+                        <div class="bg-yellow-50 rounded-lg p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-yellow-100 text-yellow-800 rounded-full p-2 mr-3">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <h3 class="font-semibold text-yellow-800">Analytics และ Performance</h3>
+                            </div>
+                            <ul class="list-disc pl-5 text-gray-700">
+                                <li>ไม่สามารถเก็บข้อมูล Analytics ได้เนื่องจากการใช้งานเต็ม</li>
+                                <li>ไม่สามารถ Deploy เวอร์ชันใหม่ได้</li>
+                                <li>Speed Insights แสดงคะแนน Performance ที่ต้องปรับปรุง</li>
+                                <li>ส่งผลกระทบต่อคะแนน SEO และการจัดอันดับใน Google</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Speed Insights Section -->
+                <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h2 class="text-2xl font-semibold mb-6 text-purple-800 border-b pb-2">Speed Insights Report</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Desktop Performance -->
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h3 class="font-semibold mb-3 flex items-center">
+                                <i class="fas fa-desktop mr-2"></i>
+                                Desktop Performance
+                            </h3>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span>Real Experience Score:</span>
+                                    <span class="font-semibold text-green-600">99/100</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>First Contentful Paint:</span>
+                                    <span>1.46s</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Time to First Byte:</span>
+                                    <span>0.73s</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Performance -->
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h3 class="font-semibold mb-3 flex items-center">
+                                <i class="fas fa-mobile-alt mr-2"></i>
+                                Mobile Performance
+                            </h3>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span>Real Experience Score:</span>
+                                    <span class="font-semibold text-green-600">96/100</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>First Contentful Paint:</span>
+                                    <span>1.37s</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Time to First Byte:</span>
+                                    <span>0.83s</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Roadmap Section -->
+                <section class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-semibold mb-6 text-purple-800 border-b pb-2">แผนการพัฒนาในอนาคต</h2>
+
+                    <!-- AI Feature -->
+                    <div class="mb-6">
+                        <h3 class="font-semibold text-lg mb-3 flex items-center">
+                            <i class="fas fa-robot text-purple-600 mr-2"></i>
+                            ระบบ AI เลือกรถ
+                        </h3>
+                        <p class="text-gray-600 mb-2">พัฒนาระบบ AI ที่ช่วยแนะนำรถยนต์ที่เหมาะสมกับความต้องการของลูกค้า
+                        </p>
+                        <div class="bg-purple-50 rounded p-3">
+                            <p class="text-sm text-purple-800">ต้องการ Pro Plan เพื่อรองรับ Function Calls และ Edge
+                                Computing</p>
+                        </div>
+                    </div>
+
+                    <!-- LINE Integration -->
+                    <div class="mb-6">
+                        <h3 class="font-semibold text-lg mb-3 flex items-center">
+                            <i class="fab fa-line text-green-600 mr-2"></i>
+                            ระบบ LINE Integration
+                        </h3>
+                        <p class="text-gray-600 mb-2">พัฒนาระบบเชื่อมต่อกับ LINE สำหรับการสื่อสารและให้บริการลูกค้า</p>
+                        <div class="bg-green-50 rounded p-3">
+                            <p class="text-sm text-green-800">ต้องการ Serverless Functions และ API Routes เพิ่มเติม</p>
+                        </div>
+                    </div>
+
+                    <!-- Admin Dashboard -->
+                    <div class="mb-6">
+                        <h3 class="font-semibold text-lg mb-3 flex items-center">
+                            <i class="fas fa-tachometer-alt text-blue-600 mr-2"></i>
+                            Admin Dashboard
+                        </h3>
+                        <p class="text-gray-600 mb-2">พัฒนาระบบจัดการเว็บไซต์สำหรับผู้ดูแลระบบ</p>
+                        <div class="bg-blue-50 rounded p-3">
+                            <p class="text-sm text-blue-800">ต้องการ Authentication และ Database Integration ที่ปลอดภัย
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column -->
+            <div class="lg:col-span-1">
+                <!-- Pro Plan Benefits -->
+                <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h2 class="text-2xl font-semibold mb-4 text-purple-800 border-b pb-2">ประโยชน์ของ Pro Plan</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-green-100 text-green-800 rounded-full p-2 mr-3 mt-1">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Enhanced Security</h3>
+                                <p class="text-sm text-gray-600">SSL, DDOS Protection, และระบบความปลอดภัยระดับองค์กร</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 text-blue-800 rounded-full p-2 mr-3 mt-1">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Zero Configuration</h3>
+                                <p class="text-sm text-gray-600">ระบบ CI/CD อัตโนมัติ และการ Deploy ที่รวดเร็ว</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 text-purple-800 rounded-full p-2 mr-3 mt-1">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Advanced Analytics</h3>
+                                <p class="text-sm text-gray-600">การวิเคราะห์ประสิทธิภาพและพฤติกรรมผู้ใช้แบบเรียลไทม์
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Cost Analysis -->
+                <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h2 class="text-2xl font-semibold mb-4 text-purple-800 border-b pb-2">การวิเคราะห์ค่าใช้จ่าย</h2>
+                    <div class="space-y-4">
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <h3 class="font-semibold mb-2">Pro Plan ($20/เดือน)</h3>
+                            <ul class="list-disc pl-5 text-sm text-gray-700">
+                                <li>เพิ่มขีดจำกัด Bandwidth และ Build Minutes</li>
+                                <li>รองรับการเติบโตของผู้ใช้งาน</li>
+                                <li>ลดค่าใช้จ่ายในระยะยาวเมื่อเทียบกับ Self-hosted</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <h3 class="font-semibold mb-2">ROI ที่คาดการณ์</h3>
+                            <ul class="list-disc pl-5 text-sm text-gray-700">
+                                <li>เพิ่มประสิทธิภาพการทำงาน 40%</li>
+                                <li>ลดเวลาในการ Maintenance 60%</li>
+                                <li>เพิ่ม SEO Score และ Traffic</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Performance Improvements -->
+                <section class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-semibold mb-4 text-purple-800 border-b pb-2">แผนการปรับปรุง</h2>
+                    <div class="space-y-4">
+                        <div class="bg-yellow-50 rounded-lg p-4">
+                            <h3 class="font-semibold mb-2">การเพิ่มประสิทธิภาพ</h3>
+                            <ul class="list-disc pl-5 text-sm text-gray-700">
+                                <li>ย้ายรูปภาพไปยัง Cloud Storage</li>
+                                <li>ใช้ Supabase สำหรับจัดการข้อมูล</li>
+                                <li>ปรับปรุง Caching Strategy</li>
+                                <li>เพิ่ม CDN Optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-8 text-center text-gray-500 text-sm">
+            <p>รายงานนี้จัดทำขึ้นเพื่อนำเสนอความจำเป็นในการ Upgrade เป็น Vercel Pro Plan</p>
+            <p class="mt-2">© 2025 BYD-Metromobile</p>
+        </footer>
+    </div>
+</body>
+
+</html>
